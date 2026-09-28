@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "価格比較グリッド",
+  "version": "1.0.0",
+  "description": "数量・箱数・価格から単価を比較するポップアップ",
+  "permissions": ["storage"],
+  "action": {
+    "default_title": "価格比較",
+    "default_popup": "popup.html"
+  }
+}
