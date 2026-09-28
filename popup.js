@@ -4,12 +4,14 @@ const STORAGE_KEY = "priceCompareGridInputs";
 const rows = {
   quantity: Array(COLUMN_COUNT).fill(""),
   boxes: Array(COLUMN_COUNT).fill(""),
-  price: Array(COLUMN_COUNT).fill("")
+  price: Array(COLUMN_COUNT).fill(""),
+  shipping: Array(COLUMN_COUNT).fill(""),
+  link: Array(COLUMN_COUNT).fill("")
 };
 
 const inputs = Array.from(document.querySelectorAll("input[data-row][data-col]"));
-const cheapestOutputs = Array.from(document.querySelectorAll('[data-output="cheapest"]'));
-const unitOutputs = Array.from(document.querySelectorAll('[data-output="unit"]'));
+const normalTable = document.getElementById("normalTable");
+const transposedTable = document.getElementById("transposedTable");
 
 const hasSessionStorageApi =
   typeof chrome !== "undefined" && chrome.storage && chrome.storage.session;
@@ -48,11 +50,30 @@ function parsePositiveNumber(value) {
   return Number.isFinite(parsed) && parsed > 0 ? parsed : null;
 }
 
+function parseNonNegativeNumber(value) {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) && parsed >= 0 ? parsed : null;
+}
+
 function formatUnitPrice(value) {
   return value.toLocaleString("ja-JP", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2
   });
+}
+
+function formatTotalPrice(value) {
+  return value.toLocaleString("ja-JP", {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2
+  });
+}
+
+function setOutputText(outputName, col, value) {
+  const outputs = document.querySelectorAll(`[data-output="${outputName}"][data-col="${col}"]`);
+  for (const output of outputs) {
+    output.textContent = value;
+  }
 }
 
 function updateCalculatedRows() {
@@ -61,13 +82,22 @@ function updateCalculatedRows() {
   for (let i = 0; i < COLUMN_COUNT; i += 1) {
     const quantity = parsePositiveNumber(rows.quantity[i]);
     const boxes = parsePositiveNumber(rows.boxes[i]);
-    const price = parsePositiveNumber(rows.price[i]);
+    const price = parseNonNegativeNumber(rows.price[i]);
+    const shipping = parseNonNegativeNumber(rows.shipping[i]);
 
-    if (quantity && boxes && price) {
-      unitPrices[i] = price / (quantity * boxes);
-      unitOutputs[i].textContent = formatUnitPrice(unitPrices[i]);
+    if (price !== null && shipping !== null) {
+      const totalPrice = price + shipping;
+      setOutputText("total", i, formatTotalPrice(totalPrice));
+
+      if (quantity && boxes) {
+        unitPrices[i] = totalPrice / (quantity * boxes);
+        setOutputText("unit", i, formatUnitPrice(unitPrices[i]));
+      } else {
+        setOutputText("unit", i, "");
+      }
     } else {
-      unitOutputs[i].textContent = "";
+      setOutputText("total", i, "");
+      setOutputText("unit", i, "");
     }
   }
 
@@ -76,7 +106,7 @@ function updateCalculatedRows() {
 
   for (let i = 0; i < COLUMN_COUNT; i += 1) {
     const isCheapest = minUnitPrice !== null && unitPrices[i] === minUnitPrice;
-    cheapestOutputs[i].textContent = isCheapest ? "★" : "";
+    setOutputText("cheapest", i, isCheapest ? "★" : "");
   }
 }
 
@@ -119,12 +149,25 @@ function registerClearButtonHandler() {
   });
 }
 
+function registerTransposeButtonHandler() {
+  const transposeButton = document.getElementById("transposeButton");
+  let isTransposed = false;
+
+  transposeButton.addEventListener("click", () => {
+    isTransposed = !isTransposed;
+    normalTable.classList.toggle("hidden", isTransposed);
+    transposedTable.classList.toggle("hidden", !isTransposed);
+    transposeButton.textContent = isTransposed ? "元に戻す" : "行列を入れ替える";
+  });
+}
+
 async function initialize() {
   await loadState();
   renderInputs();
   updateCalculatedRows();
   registerInputHandlers();
   registerClearButtonHandler();
+  registerTransposeButtonHandler();
 }
 
 void initialize();

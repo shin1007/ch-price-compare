@@ -60,6 +60,12 @@ input {
 
 .actions {
   margin-top: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+.hidden {
+  display: none;
 }
 
 button {

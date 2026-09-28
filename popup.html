@@ -9,7 +9,7 @@
   <body>
     <main class="container">
       <h1>価格比較グリッド</h1>
-      <table aria-label="価格比較入力グリッド">
+      <table id="normalTable" aria-label="価格比較入力グリッド">
         <thead>
           <tr>
             <th scope="col">項目</th>
@@ -38,12 +38,28 @@
             <td><input data-row="boxes" data-col="4" type="number" min="0" step="1" inputmode="numeric" /></td>
           </tr>
           <tr>
-            <th scope="row">合計価格（円）</th>
+            <th scope="row">商品価格（円）</th>
             <td><input data-row="price" data-col="0" type="number" min="0" step="0.01" inputmode="decimal" /></td>
             <td><input data-row="price" data-col="1" type="number" min="0" step="0.01" inputmode="decimal" /></td>
             <td><input data-row="price" data-col="2" type="number" min="0" step="0.01" inputmode="decimal" /></td>
             <td><input data-row="price" data-col="3" type="number" min="0" step="0.01" inputmode="decimal" /></td>
             <td><input data-row="price" data-col="4" type="number" min="0" step="0.01" inputmode="decimal" /></td>
+          </tr>
+          <tr>
+            <th scope="row">送料（円）</th>
+            <td><input data-row="shipping" data-col="0" type="number" min="0" step="0.01" inputmode="decimal" /></td>
+            <td><input data-row="shipping" data-col="1" type="number" min="0" step="0.01" inputmode="decimal" /></td>
+            <td><input data-row="shipping" data-col="2" type="number" min="0" step="0.01" inputmode="decimal" /></td>
+            <td><input data-row="shipping" data-col="3" type="number" min="0" step="0.01" inputmode="decimal" /></td>
+            <td><input data-row="shipping" data-col="4" type="number" min="0" step="0.01" inputmode="decimal" /></td>
+          </tr>
+          <tr>
+            <th scope="row">支払総額（円）</th>
+            <td data-output="total" data-col="0"></td>
+            <td data-output="total" data-col="1"></td>
+            <td data-output="total" data-col="2"></td>
+            <td data-output="total" data-col="3"></td>
+            <td data-output="total" data-col="4"></td>
           </tr>
           <tr>
             <th scope="row">最安マーク</th>
@@ -61,13 +77,95 @@
             <td data-output="unit" data-col="3"></td>
             <td data-output="unit" data-col="4"></td>
           </tr>
+          <tr>
+            <th scope="row">リンク</th>
+            <td><input data-row="link" data-col="0" type="url" inputmode="url" /></td>
+            <td><input data-row="link" data-col="1" type="url" inputmode="url" /></td>
+            <td><input data-row="link" data-col="2" type="url" inputmode="url" /></td>
+            <td><input data-row="link" data-col="3" type="url" inputmode="url" /></td>
+            <td><input data-row="link" data-col="4" type="url" inputmode="url" /></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table id="transposedTable" class="hidden" aria-label="価格比較入力グリッド（転置）">
+        <thead>
+          <tr>
+            <th scope="col">候補</th>
+            <th scope="col">1箱の入り数（個）</th>
+            <th scope="col">購入箱数（箱）</th>
+            <th scope="col">商品価格（円）</th>
+            <th scope="col">送料（円）</th>
+            <th scope="col">支払総額（円）</th>
+            <th scope="col">最安マーク</th>
+            <th scope="col">1個あたり単価（円）</th>
+            <th scope="col">リンク</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">候補1</th>
+            <td><input data-row="quantity" data-col="0" type="number" min="0" step="1" inputmode="numeric" /></td>
+            <td><input data-row="boxes" data-col="0" type="number" min="0" step="1" inputmode="numeric" /></td>
+            <td><input data-row="price" data-col="0" type="number" min="0" step="0.01" inputmode="decimal" /></td>
+            <td><input data-row="shipping" data-col="0" type="number" min="0" step="0.01" inputmode="decimal" /></td>
+            <td data-output="total" data-col="0"></td>
+            <td data-output="cheapest" data-col="0"></td>
+            <td data-output="unit" data-col="0"></td>
+            <td><input data-row="link" data-col="0" type="url" inputmode="url" /></td>
+          </tr>
+          <tr>
+            <th scope="row">候補2</th>
+            <td><input data-row="quantity" data-col="1" type="number" min="0" step="1" inputmode="numeric" /></td>
+            <td><input data-row="boxes" data-col="1" type="number" min="0" step="1" inputmode="numeric" /></td>
+            <td><input data-row="price" data-col="1" type="number" min="0" step="0.01" inputmode="decimal" /></td>
+            <td><input data-row="shipping" data-col="1" type="number" min="0" step="0.01" inputmode="decimal" /></td>
+            <td data-output="total" data-col="1"></td>
+            <td data-output="cheapest" data-col="1"></td>
+            <td data-output="unit" data-col="1"></td>
+            <td><input data-row="link" data-col="1" type="url" inputmode="url" /></td>
+          </tr>
+          <tr>
+            <th scope="row">候補3</th>
+            <td><input data-row="quantity" data-col="2" type="number" min="0" step="1" inputmode="numeric" /></td>
+            <td><input data-row="boxes" data-col="2" type="number" min="0" step="1" inputmode="numeric" /></td>
+            <td><input data-row="price" data-col="2" type="number" min="0" step="0.01" inputmode="decimal" /></td>
+            <td><input data-row="shipping" data-col="2" type="number" min="0" step="0.01" inputmode="decimal" /></td>
+            <td data-output="total" data-col="2"></td>
+            <td data-output="cheapest" data-col="2"></td>
+            <td data-output="unit" data-col="2"></td>
+            <td><input data-row="link" data-col="2" type="url" inputmode="url" /></td>
+          </tr>
+          <tr>
+            <th scope="row">候補4</th>
+            <td><input data-row="quantity" data-col="3" type="number" min="0" step="1" inputmode="numeric" /></td>
+            <td><input data-row="boxes" data-col="3" type="number" min="0" step="1" inputmode="numeric" /></td>
+            <td><input data-row="price" data-col="3" type="number" min="0" step="0.01" inputmode="decimal" /></td>
+            <td><input data-row="shipping" data-col="3" type="number" min="0" step="0.01" inputmode="decimal" /></td>
+            <td data-output="total" data-col="3"></td>
+            <td data-output="cheapest" data-col="3"></td>
+            <td data-output="unit" data-col="3"></td>
+            <td><input data-row="link" data-col="3" type="url" inputmode="url" /></td>
+          </tr>
+          <tr>
+            <th scope="row">候補5</th>
+            <td><input data-row="quantity" data-col="4" type="number" min="0" step="1" inputmode="numeric" /></td>
+            <td><input data-row="boxes" data-col="4" type="number" min="0" step="1" inputmode="numeric" /></td>
+            <td><input data-row="price" data-col="4" type="number" min="0" step="0.01" inputmode="decimal" /></td>
+            <td><input data-row="shipping" data-col="4" type="number" min="0" step="0.01" inputmode="decimal" /></td>
+            <td data-output="total" data-col="4"></td>
+            <td data-output="cheapest" data-col="4"></td>
+            <td data-output="unit" data-col="4"></td>
+            <td><input data-row="link" data-col="4" type="url" inputmode="url" /></td>
+          </tr>
         </tbody>
       </table>
 
       <div class="actions">
+        <button id="transposeButton" type="button">行列を入れ替える</button>
         <button id="clearButton" type="button">クリア</button>
       </div>
-      <p class="hint">単価 = 合計価格 ÷（1箱の入り数 × 購入箱数）</p>
+      <p class="hint">支払総額 = 商品価格 + 送料 / 単価 = 支払総額 ÷（1箱の入り数 × 購入箱数）</p>
     </main>
 
     <script src="popup.js" defer></script>
