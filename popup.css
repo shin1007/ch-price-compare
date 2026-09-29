@@ -1,21 +1,62 @@
 :root {
   color-scheme: light;
-  font-family: "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-family: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  color: #20252b;
+  background: #f5f6f7;
+}
+
+:lang(ja) {
+  font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+}
+
+:lang(zh) {
+  font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+}
+
+:lang(ko) {
+  font-family: "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+}
+
+html {
+  width: 800px;
+  min-height: 600px;
 }
 
 body {
   margin: 0;
-  min-width: 920px;
-  background: #f8f9fb;
+  width: 800px;
+  height: 600px;
+  box-sizing: border-box;
+  overflow: auto;
 }
 
 .container {
-  padding: 12px;
+  min-height: 100%;
+  box-sizing: border-box;
+  padding: 16px;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 10px;
 }
 
 h1 {
+  margin: 0;
+  font-size: 19px;
+  letter-spacing: 0;
+}
+
+.formula {
   margin: 0 0 12px;
-  font-size: 18px;
+  padding: 8px 10px;
+  border-inline-start: 3px solid #6a7d8d;
+  background: #e9edf0;
+  color: #4c5963;
+  font-size: 12px;
 }
 
 table {
@@ -23,43 +64,128 @@ table {
   border-collapse: collapse;
   table-layout: fixed;
   background: #fff;
+  box-shadow: 0 1px 3px rgb(30 38 44 / 10%);
+}
+
+.table-scroll {
+  overflow-x: auto;
+  padding: 2px;
 }
 
 th,
 td {
-  border: 1px solid #d9dce3;
-  padding: 8px;
+  border: 1px solid #cbd3d8;
+  padding: 9px 8px;
   text-align: center;
   font-size: 13px;
 }
 
 th[scope="row"] {
-  text-align: left;
-  width: 170px;
-  background: #f3f5f9;
+  text-align: start;
+  width: 175px;
+  background: #f0f2f3;
+  font-weight: 600;
 }
 
 thead th {
-  background: #eef2f7;
+  background: #e4e9ec;
   font-weight: 600;
+  border-bottom: 2px solid #9eabb3;
+}
+
+tbody tr:nth-child(even) td {
+  background: #fafbfb;
 }
 
 input {
   width: 100%;
   box-sizing: border-box;
-  border: 1px solid #b8c0cc;
-  border-radius: 4px;
-  padding: 6px;
+  border: 1px solid #b8c0c6;
+  border-radius: 3px;
+  padding: 7px 6px;
   font-size: 13px;
+  background: #fff;
+}
+
+/* URLs read left to right even in RTL layouts. */
+input[type="url"] {
+  direction: ltr;
+}
+
+input:focus {
+  outline: 2px solid #8ea5b3;
+  outline-offset: 1px;
 }
 
 [data-output="cheapest"] {
-  color: #0a7d34;
+  color: #2d7a50;
   font-weight: 700;
+  margin-inline-end: 3px;
+}
+
+.cheapest,
+.cheapest > th,
+.cheapest > td {
+  background: #e8f2ec !important;
+}
+
+#transposedTable .cheapest > th,
+#transposedTable .cheapest > td {
+  box-shadow: inset 0 2px 0 #3d8a5d, inset 0 -2px 0 #3d8a5d;
+}
+
+#normalTable [data-candidate-col].cheapest {
+  box-shadow: inset 2px 0 0 #3d8a5d, inset -2px 0 0 #3d8a5d;
+}
+
+/* Operator badges between header cells visualize the formula. */
+[data-calc-key] {
+  position: relative;
+}
+
+[data-calc-key="boxes"]::before,
+[data-calc-key="price"]::before {
+  content: "×";
+}
+
+[data-calc-key="shipping"]::before {
+  content: "+";
+}
+
+[data-calc-key="total"]::before {
+  content: "=";
+}
+
+[data-calc-key]::before {
+  position: absolute;
+  z-index: 2;
+  padding: 2px 4px;
+  transform: translate(-50%, -50%);
+  color: #4a5a64;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+#normalTable [data-calc-key]::before {
+  top: -1px;
+  left: 50%;
+  background: #f0f2f3;
+}
+
+#transposedTable [data-calc-key]::before {
+  top: 50%;
+  left: -1px;
+  background: #e4e9ec;
+}
+
+[dir="rtl"] #transposedTable [data-calc-key]::before {
+  right: -1px;
+  left: auto;
+  transform: translate(50%, -50%);
 }
 
 .actions {
-  margin-top: 10px;
   display: flex;
   gap: 8px;
 }
@@ -69,19 +195,41 @@ input {
 }
 
 button {
-  border: 1px solid #c2c8d1;
+  border: 1px solid #aeb8c0;
   background: #fff;
-  border-radius: 4px;
-  padding: 6px 14px;
+  border-radius: 3px;
+  padding: 7px 12px;
   cursor: pointer;
+  color: #2b343b;
+  font: inherit;
+  font-size: 12px;
 }
 
 button:hover {
-  background: #f0f3f8;
+  background: #edf1f2;
 }
 
-.hint {
-  margin: 10px 0 0;
-  font-size: 12px;
-  color: #657081;
+.add-button {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+  border-style: dashed;
+  color: #526b78;
+}
+
+.add-button span:first-child {
+  font-size: 16px;
+  vertical-align: -1px;
+}
+
+@media (max-width: 760px) {
+  .container {
+    padding: 12px;
+  }
+
+  .toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
 }

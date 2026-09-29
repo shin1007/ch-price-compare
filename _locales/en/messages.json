@@ -1,0 +1,8 @@
+{
+  "appName": {
+    "message": "Price Comparison Grid"
+  },
+  "appDescription": {
+    "message": "Compare the price per item from item price, shipping, items per box, and number of boxes."
+  }
+}

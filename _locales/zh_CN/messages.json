@@ -1,0 +1,8 @@
+{
+  "appName": {
+    "message": "价格比较表"
+  },
+  "appDescription": {
+    "message": "根据商品价格、运费、每箱数量和箱数计算并比较每件单价。"
+  }
+}
