@@ -31,6 +31,68 @@ storeListing:
       description: "assets/locales/en/description.txt"
       screenshots:
         - "assets/locales/en/screenshots/01.png"
+        - "assets/locales/en/screenshots/02.png"
+        - "assets/locales/en/screenshots/03.png"
+    zh_CN:
+      description: "assets/locales/zh_CN/description.txt"
+      screenshots:
+        - "assets/locales/zh_CN/screenshots/01.png"
+        - "assets/locales/zh_CN/screenshots/02.png"
+        - "assets/locales/zh_CN/screenshots/03.png"
+    hi:
+      description: "assets/locales/hi/description.txt"
+      screenshots:
+        - "assets/locales/hi/screenshots/01.png"
+        - "assets/locales/hi/screenshots/02.png"
+        - "assets/locales/hi/screenshots/03.png"
+    es:
+      description: "assets/locales/es/description.txt"
+      screenshots:
+        - "assets/locales/es/screenshots/01.png"
+        - "assets/locales/es/screenshots/02.png"
+        - "assets/locales/es/screenshots/03.png"
+    fr:
+      description: "assets/locales/fr/description.txt"
+      screenshots:
+        - "assets/locales/fr/screenshots/01.png"
+        - "assets/locales/fr/screenshots/02.png"
+        - "assets/locales/fr/screenshots/03.png"
+    ar:
+      description: "assets/locales/ar/description.txt"
+      screenshots:
+        - "assets/locales/ar/screenshots/01.png"
+        - "assets/locales/ar/screenshots/02.png"
+        - "assets/locales/ar/screenshots/03.png"
+    bn:
+      description: "assets/locales/bn/description.txt"
+      screenshots:
+        - "assets/locales/bn/screenshots/01.png"
+        - "assets/locales/bn/screenshots/02.png"
+        - "assets/locales/bn/screenshots/03.png"
+    pt_BR:
+      description: "assets/locales/pt_BR/description.txt"
+      screenshots:
+        - "assets/locales/pt_BR/screenshots/01.png"
+        - "assets/locales/pt_BR/screenshots/02.png"
+        - "assets/locales/pt_BR/screenshots/03.png"
+    pt_PT:
+      description: "assets/locales/pt_PT/description.txt"
+      screenshots:
+        - "assets/locales/pt_PT/screenshots/01.png"
+        - "assets/locales/pt_PT/screenshots/02.png"
+        - "assets/locales/pt_PT/screenshots/03.png"
+    ru:
+      description: "assets/locales/ru/description.txt"
+      screenshots:
+        - "assets/locales/ru/screenshots/01.png"
+        - "assets/locales/ru/screenshots/02.png"
+        - "assets/locales/ru/screenshots/03.png"
+    ko:
+      description: "assets/locales/ko/description.txt"
+      screenshots:
+        - "assets/locales/ko/screenshots/01.png"
+        - "assets/locales/ko/screenshots/02.png"
+        - "assets/locales/ko/screenshots/03.png"
 
 package:
   zip: "package.zip"

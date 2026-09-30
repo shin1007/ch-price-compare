@@ -70,11 +70,12 @@ No. All JavaScript is bundled in the extension package; no remote code is loaded
 - Extension icon source: `icon.svg` (calculator motif, 128x128 viewBox)
 - Extension/store icon: `icon.png` (128x128, opaque background)
 - Layout follows `AGENT_INPUT_SPEC.md`: everything lives under `store/assets/` (icon, tiles, per-locale description and screenshots); `store/package.zip` is the built package
-- Screenshots (1280x800, 24-bit PNG, no alpha)
-  - `assets/locales/ja/screenshots/01.png`: unit price calculation and lowest-price highlighting
-  - `assets/locales/ja/screenshots/02.png`: switched layout
-  - `assets/locales/ja/screenshots/03.png`: 7 candidates after adding
-  - `assets/locales/en/screenshots/01.png`: English UI
+- Screenshots: 12 locales (ja, en, zh_CN, hi, es, fr, ar, bn, pt_BR, pt_PT, ru, ko) x 3 images at `store/assets/locales/<locale>/screenshots/01-03.png` (1280x800, 24-bit PNG, no alpha)
+  - `01.png`: unit price calculation and lowest-price highlighting (5 candidates)
+  - `02.png`: wide layout
+  - `03.png`: 7 candidates after adding
+  - Each image is the popup rendered in that locale with a localized headline; the shortcut badge shows Alt+Shift+P
+- Descriptions: `store/assets/locales/<locale>/description.txt` (all 12 locales, mention the Alt+Shift+P shortcut)
 - Small promo tile: `store/assets/promo-tile-440x280.png`
 - Marquee promo tile: `store/assets/marquee-1400x560.png`
 - Sample data uses `example.com` links and fictional prices only.
