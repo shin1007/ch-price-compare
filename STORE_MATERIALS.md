@@ -69,13 +69,14 @@ No. All JavaScript is bundled in the extension package; no remote code is loaded
 
 - Extension icon source: `icon.svg` (calculator motif, 128x128 viewBox)
 - Extension/store icon: `icon.png` (128x128, opaque background)
-- Screenshots (`store-assets/`, 1280x800, 24-bit PNG)
-  - `screenshot-1-unit-price.png`: unit price calculation and lowest-price highlighting
-  - `screenshot-2-layout.png`: switched layout
-  - `screenshot-3-add-candidates.png`: 7 candidates after adding
-  - `screenshot-4-english.png`: English UI
-- Small promo tile: `store-assets/promo-small-440x280.png`
-- Marquee promo tile: `store-assets/promo-marquee-1400x560.png`
+- Layout follows `AGENT_INPUT_SPEC.md`: everything lives under `store/assets/` (icon, tiles, per-locale description and screenshots); `store/package.zip` is the built package
+- Screenshots (1280x800, 24-bit PNG, no alpha)
+  - `assets/locales/ja/screenshots/01.png`: unit price calculation and lowest-price highlighting
+  - `assets/locales/ja/screenshots/02.png`: switched layout
+  - `assets/locales/ja/screenshots/03.png`: 7 candidates after adding
+  - `assets/locales/en/screenshots/01.png`: English UI
+- Small promo tile: `store/assets/promo-tile-440x280.png`
+- Marquee promo tile: `store/assets/marquee-1400x560.png`
 - Sample data uses `example.com` links and fictional prices only.
 
 ## Screenshot capture checklist

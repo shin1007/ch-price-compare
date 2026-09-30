@@ -1,0 +1,36 @@
+privacy:
+  singlePurpose: "箱入り商品の価格・送料・入り数・箱数を入力し、支払総額と1個あたりの単価を計算して、候補の中で最も安い単価を比較・表示することだけを目的とした拡張機能です。"
+
+  permissionJustifications:
+    storage: "ポップアップを閉じても入力途中の比較内容（価格・送料・入り数・箱数・リンク）が消えないよう、chrome.storage.session に一時保存するために使用します。データはブラウザのセッション中のみ端末内に保持され、ブラウザを終了すると削除されます。外部への送信は一切行いません。"
+
+  usesRemoteCode: false
+
+  dataUsage:
+    collects: []
+    certifications:
+      noSellingToThirdParties: true
+      noUseUnrelatedToSinglePurpose: true
+      noUseForCreditworthinessOrLending: true
+
+storeListing:
+  category: "ショッピング"
+  defaultLocale: "ja"
+  icon: "assets/icon.png"
+  promoTileSmall: "assets/promo-tile-440x280.png"
+  marqueeTile: "assets/marquee-1400x560.png"
+
+  locales:
+    ja:
+      description: "assets/locales/ja/description.txt"
+      screenshots:
+        - "assets/locales/ja/screenshots/01.png"
+        - "assets/locales/ja/screenshots/02.png"
+        - "assets/locales/ja/screenshots/03.png"
+    en:
+      description: "assets/locales/en/description.txt"
+      screenshots:
+        - "assets/locales/en/screenshots/01.png"
+
+package:
+  zip: "package.zip"
