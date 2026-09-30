@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "__MSG_appName__",
-  "version": "2026.9.29",
+  "version": "2026.9.30",
   "default_locale": "ja",
   "description": "__MSG_appDescription__",
   "permissions": [
@@ -9,6 +9,14 @@
   ],
   "icons": {
     "128": "icon.png"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+Shift+P",
+        "mac": "Alt+Shift+P"
+      }
+    }
   },
   "action": {
     "default_title": "__MSG_appName__",

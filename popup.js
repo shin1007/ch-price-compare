@@ -17,6 +17,21 @@ const translations = {
   ko: { title: "가격 비교표", transpose: "가로 보기", restore: "세로 보기", clear: "지우기", addCandidate: "후보 추가", candidate: "후보", quantity: "상자당 수량", boxes: "구매 상자 수", price: "상품 가격", shipping: "배송비", total: "총 결제액", unit: "개당 가격", link: "링크", formula: "계산식", aria: "작업" }
 };
 
+const shortcutTexts = {
+  ja: { notSet: "ショートカット未設定", change: "ショートカットを変更" },
+  en: { notSet: "Set shortcut", change: "Change shortcut" },
+  zh: { notSet: "设置快捷键", change: "更改快捷键" },
+  hi: { notSet: "शॉर्टकट सेट करें", change: "शॉर्टकट बदलें" },
+  es: { notSet: "Definir atajo", change: "Cambiar atajo" },
+  fr: { notSet: "Définir le raccourci", change: "Modifier le raccourci" },
+  ar: { notSet: "تعيين اختصار", change: "تغيير الاختصار" },
+  bn: { notSet: "শর্টকাট সেট করুন", change: "শর্টকাট পরিবর্তন করুন" },
+  pt: { notSet: "Definir atalho", change: "Alterar atalho" },
+  ru: { notSet: "Задать сочетание", change: "Изменить сочетание" },
+  ko: { notSet: "단축키 설정", change: "단축키 변경" }
+};
+
+const SHORTCUTS_URL = "chrome://extensions/shortcuts";
 const RTL_LOCALES = ["ar"];
 const FULL_WIDTH_PAREN_LOCALES = ["ja", "zh"];
 
@@ -227,12 +242,40 @@ function registerEventHandlers() {
   });
 }
 
+// Shows the shortcut the user actually has; clicking opens Chrome's page where it can be changed.
+async function renderShortcutHint() {
+  const texts = shortcutTexts[locale] ?? shortcutTexts.en;
+  let shortcut = "";
+  try {
+    const commands = await chrome.commands.getAll();
+    // Brave may report the action command under a different name, so accept any _execute_* entry.
+    shortcut = commands.find((command) => command.name.startsWith("_execute") && command.shortcut)?.shortcut ?? "";
+    // Brave returns an empty shortcut even when one is assigned, so fall back to the manifest's suggested key.
+    if (!shortcut) {
+      const suggested = chrome.runtime.getManifest().commands?._execute_action?.suggested_key;
+      shortcut = suggested?.default ?? "";
+    }
+  } catch (error) {
+    console.error("Failed to read shortcut", error);
+  }
+
+  const hint = document.getElementById("shortcutHint");
+  hint.innerHTML = shortcut
+    ? shortcut.split("+").map((key) => `<kbd>${escapeHtml(key)}</kbd>`).join("+")
+    : escapeHtml(texts.notSet);
+  hint.title = texts.change;
+  hint.hidden = false;
+  hint.addEventListener("click", () => chrome.tabs.create({ url: SHORTCUTS_URL }));
+}
+
 async function initialize() {
   selectLocale();
+  const shortcutHintReady = renderShortcutHint();
   await loadState();
   applyTranslations();
   renderTables();
   registerEventHandlers();
+  await shortcutHintReady;
 }
 
 void initialize();

@@ -44,6 +44,42 @@ body {
   margin-bottom: 10px;
 }
 
+.heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.shortcut-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 4px;
+  border: 0;
+  background: none;
+  color: #6b7480;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.shortcut-hint:hover {
+  color: #20252b;
+}
+
+.shortcut-hint[hidden] {
+  display: none;
+}
+
+.shortcut-hint kbd {
+  padding: 1px 6px;
+  border: 1px solid #c9ced4;
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  background: #fff;
+  color: #20252b;
+  font: inherit;
+}
+
 h1 {
   margin: 0;
   font-size: 19px;
