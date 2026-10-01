@@ -1,0 +1,8 @@
+{
+  "appName": {
+    "message": "Comparador de preços"
+  },
+  "appDescription": {
+    "message": "Compare o preço por item com base no preço, frete, itens por caixa e número de caixas."
+  }
+}

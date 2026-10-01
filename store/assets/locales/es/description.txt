@@ -1,0 +1,3 @@
+Compara productos en caja según el precio, el envío, los artículos por caja y el número de cajas. La extensión calcula el total pagado y el precio por artículo, resalta el más barato y ofrece vista alta y ancha.
+
+Abre la ventana rápidamente con el atajo Alt+Shift+P. Lo que introduces se guarda solo en tu dispositivo durante la sesión del navegador y no se envía a ningún sitio.

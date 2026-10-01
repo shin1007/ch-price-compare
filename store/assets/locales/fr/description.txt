@@ -1,0 +1,3 @@
+Comparez des produits en boîte selon le prix, la livraison, le nombre d'articles par boîte et le nombre de boîtes. L'extension calcule le total payé et le prix par article, met en évidence le plus bas et propose une vue haute et une vue large.
+
+Ouvrez la fenêtre rapidement avec le raccourci Alt+Shift+P. Vos saisies restent sur votre appareil pendant la session du navigateur et ne sont envoyées nulle part.

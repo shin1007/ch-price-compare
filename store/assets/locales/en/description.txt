@@ -1,0 +1,3 @@
+Compare boxed products by item price, shipping, pack size, and number of boxes. The extension calculates the total paid and price per item, highlights the lowest unit price, and supports both vertical and wide comparison layouts.
+
+Open the popup quickly with the Alt+Shift+P shortcut. Your input is kept on your device only for the browser session and is never sent anywhere.

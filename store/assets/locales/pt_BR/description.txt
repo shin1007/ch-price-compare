@@ -1,0 +1,3 @@
+Compare produtos em caixa pelo preço, frete, itens por caixa e número de caixas. A extensão calcula o total pago e o preço por item, destaca o menor preço e oferece vista alta e ampla.
+
+Abra o popup rapidamente com o atalho Alt+Shift+P. O que você digita fica só no seu dispositivo durante a sessão do navegador e não é enviado a lugar nenhum.

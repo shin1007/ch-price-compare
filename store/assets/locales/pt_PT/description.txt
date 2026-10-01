@@ -1,0 +1,3 @@
+Compare produtos em caixa pelo preço, portes de envio, artigos por caixa e número de caixas. A extensão calcula o total pago e o preço por artigo, destaca o mais barato e oferece vista alta e ampla.
+
+Abra a janela rapidamente com o atalho Alt+Shift+P. O que introduz fica apenas no seu dispositivo durante a sessão do navegador e não é enviado para lado nenhum.
