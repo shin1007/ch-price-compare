@@ -1,11 +1,12 @@
 {
   "manifest_version": 3,
   "name": "__MSG_appName__",
-  "version": "2026.9.30",
+  "version": "2026.10.1",
   "default_locale": "ja",
   "description": "__MSG_appDescription__",
   "permissions": [
-    "storage"
+    "storage",
+    "sidePanel"
   ],
   "icons": {
     "128": "icon.png"
@@ -18,9 +19,14 @@
       }
     }
   },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "side_panel": {
+    "default_path": "popup.html"
+  },
   "action": {
     "default_title": "__MSG_appName__",
-    "default_popup": "popup.html",
     "default_icon": {
       "128": "icon.png"
     }

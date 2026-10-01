@@ -18,16 +18,22 @@
 }
 
 html {
+  min-height: 100%;
+}
+
+html.popup-mode,
+html.popup-mode body {
   width: 800px;
+}
+
+html.popup-mode body {
   min-height: 600px;
 }
 
 body {
   margin: 0;
-  width: 800px;
-  height: 600px;
+  min-height: 100vh;
   box-sizing: border-box;
-  overflow: auto;
 }
 
 .container {
